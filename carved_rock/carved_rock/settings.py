@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
+    'store',
+
 ]
 
 MIDDLEWARE = [
@@ -76,12 +78,34 @@ WSGI_APPLICATION = 'carved_rock.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+
+# sqlite3
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# # POSTGRESQL
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'carved_rock',
+#         'HOST': '',
+#     }
+# }
+
+# # MYSQL
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'carved_rock',
+#         'HOST': '',
+#         'USER': 'admin',
+#         'PASSWORD': 'nimda',
+#     }
+# }
 
 
 # Password validation
@@ -121,16 +145,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'static'
+MEDIA_ROOT = STATIC_ROOT / 'media'
+MEDIA_URL = '/media/'
 
 INTERNAL_IPS = [
     '127.0.0.1',
 ]
 
 # Log all SQL
-# LOGGING = {
-#     "version": 1,
-#     "handlers": {"console": {"class": "logging.StreamHandler"}},
-#     "loggers": {"django.db.backends": {"level": "DEBUG"}},
-#     "root": {"handlers": ["console"]},
-# }
+LOGGING = {
+    "version": 1,
+    "handlers": {"console": {"class": "logging.StreamHandler"}},
+    "loggers": {"django.db.backends": {"level": "DEBUG"}},
+    "root": {"handlers": ["console"]},
+}
 
